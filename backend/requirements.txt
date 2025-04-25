@@ -1,0 +1,8 @@
+django
+django-cors-headers
+djangorestframework
+markdown
+django-filter
+openai 
+numpy
+transformers

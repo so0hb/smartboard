@@ -1,0 +1,7 @@
+ python3 manage.py createsuperuser
+Username: smartboard
+
+Password:009988Ppooii
+Email address: smartboard@gmail.com
+Password (again):009988Ppooii
+Superuser created successfully.

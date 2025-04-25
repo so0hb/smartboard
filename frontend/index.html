@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+	<meta charset="UTF-8">
+	<link rel="icon" type="image/svg+xml" href="/logo.png">
+	<link rel="apple-touch-icon" href="/logo.png">
+	<meta http-equiv='Content-Type' content='text/html; charset=utf-8'>
+	<meta content="yes" name="apple-mobile-web-app-capable" />
+	<meta name="viewport"
+		content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, viewport-fit=cover" />
+	<title>SmartBoard AI </title>
+	<meta name="description" content="SmartBoard AI ">
+	<script type="application/ld+json">
+		{
+		  "@context": "https://schema.org",
+		  "@type": "WebSite",
+		  "name": "SmartBoard AI",
+		  "description": " improve traditional discussion boards by integrating Generative AI to boost engagement and streamline content management. By automating key tasks, the platform will offer a more engaging experience for both instructors and students, helping to reduce redundancy in discussions and the burden of moderation.",
+		  "url": "https://smartboard-ai.app",
+		  "logo": "https://smartboard-ai.app/assets/logo-d5785398.png",
+		  "potentialAction": {
+		  "@type": "SearchAction",
+		  "target": {
+			"@type": "EntryPoint",
+			"urlTemplate": "https://query.example.com/search?q={search_term_string}"
+		  },
+		  "query-input": "required name=search_term_string"
+		  }
+		}
+		</script>
+</head>
+
+<body class="dark:bg-violet-950">
+	<div
+		style="width: 100vw; min-height: 100vh; position: fixed; z-index: -1; display: flex; justify-content: center; padding: 120px 24px 160px 24px; pointer-events: none;">
+		<div
+			style="background: radial-gradient(circle, rgba(2, 0, 36, 0) 0, #fafafa 100%); position: absolute; content: ''; z-index: 2; width: 100%; height: 100%; top: 0;">
+		</div>
+
+		<div
+			style="z-index: 3; width: 100%; max-width: 640px; background-image: radial-gradient(at 27% 37%, hsla(215, 98%, 61%, 1) 0px, transparent 0%), radial-gradient(at 97% 21%, hsla(125, 98%, 72%, 1) 0px, transparent 50%), radial-gradient(at 52% 99%, hsla(354, 98%, 61%, 1) 0px, transparent 50%), radial-gradient(at 10% 29%, hsla(256, 96%, 67%, 1) 0px, transparent 50%), radial-gradient(at 97% 96%, hsla(38, 60%, 74%, 1) 0px, transparent 50%), radial-gradient(at 33% 50%, hsla(222, 67%, 73%, 1) 0px, transparent 50%), radial-gradient(at 79% 53%, hsla(343, 68%, 79%, 1) 0px, transparent 50%); position: absolute; height: 100%; filter: blur(100px) saturate(150%); top: 80px; opacity: 0.15;">
+		</div>
+	</div>
+	<div
+		style="background: #bb9ce6;background: -webkit-linear-gradient(151deg, #bb9ce6 0%, #ddd4e9 100%);background: linear-gradient(151deg, #bb9ce6 0%, #ddd4e9 100%);">
+	</div>
+	<div id="app">
+		<style>
+			* {
+				padding: 0px;
+				margin: 0px;
+			}
+
+			.loading-wrap {
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				height: 90vh;
+
+			}
+
+			.spinner {
+				position: relative;
+				width: 13px;
+				height: 13px;
+			}
+
+			.spinner div {
+				animation: spinner-4t3wzl 1.5s infinite backwards;
+				background-color: #474bff;
+				border-radius: 50%;
+				height: 100%;
+				position: absolute;
+				width: 100%;
+			}
+
+			.spinner div:nth-child(1) {
+				animation-delay: 0.12s;
+				background-color: rgba(71, 75, 255, 0.9);
+			}
+
+			.spinner div:nth-child(2) {
+				animation-delay: 0.24s;
+				background-color: rgba(71, 75, 255, 0.8);
+			}
+
+			.spinner div:nth-child(3) {
+				animation-delay: 0.36000000000000004s;
+				background-color: rgba(71, 75, 255, 0.7);
+			}
+
+			.spinner div:nth-child(4) {
+				animation-delay: 0.48s;
+				background-color: rgba(71, 75, 255, 0.6);
+			}
+
+			.spinner div:nth-child(5) {
+				animation-delay: 0.6000000000000001s;
+				background-color: rgba(71, 75, 255, 0.5);
+			}
+
+			@keyframes spinner-4t3wzl {
+				0% {
+					transform: rotate(0deg) translateY(-200%);
+				}
+
+				60%,
+				100% {
+					transform: rotate(360deg) translateY(-200%);
+				}
+			}
+
+
+
+
+			.container {
+				width: 200px;
+				height: 200px;
+				position: absolute;
+				top: 50%;
+				left: 50%;
+				transform: translate(-50%, -50%);
+				margin: auto;
+				filter: url('#goo');
+				animation: rotate-move 2s ease-in-out infinite;
+
+
+			}
+
+			.dot {
+				width: 70px;
+				height: 70px;
+				border-radius: 50%;
+				background-color: #000;
+				position: absolute;
+				top: 0;
+				bottom: 0;
+				left: 0;
+				right: 0;
+				margin: auto;
+			}
+
+			.dot-3 {
+				background-color: #f74d75;
+				animation: dot-3-move 2s ease infinite, index 6s ease infinite;
+			}
+
+			.dot-2 {
+				background-color: #10beae;
+				animation: dot-2-move 2s ease infinite, index 6s -4s ease infinite;
+			}
+
+			.dot-1 {
+				background-color: #ffe386;
+				animation: dot-1-move 2s ease infinite, index 6s -2s ease infinite;
+			}
+
+			@keyframes dot-3-move {
+				20% {
+					transform: scale(1)
+				}
+
+				45% {
+					transform: translateY(-18px) scale(.45)
+				}
+
+				60% {
+					transform: translateY(-90px) scale(.45)
+				}
+
+				80% {
+					transform: translateY(-90px) scale(.45)
+				}
+
+				100% {
+					transform: translateY(0px) scale(1)
+				}
+			}
+
+			@keyframes dot-2-move {
+				20% {
+					transform: scale(1)
+				}
+
+				45% {
+					transform: translate(-16px, 12px) scale(.45)
+				}
+
+				60% {
+					transform: translate(-80px, 60px) scale(.45)
+				}
+
+				80% {
+					transform: translate(-80px, 60px) scale(.45)
+				}
+
+				100% {
+					transform: translateY(0px) scale(1)
+				}
+			}
+
+			@keyframes dot-1-move {
+				20% {
+					transform: scale(1)
+				}
+
+				45% {
+					transform: translate(16px, 12px) scale(.45)
+				}
+
+				60% {
+					transform: translate(80px, 60px) scale(.45)
+				}
+
+				80% {
+					transform: translate(80px, 60px) scale(.45)
+				}
+
+				100% {
+					transform: translateY(0px) scale(1)
+				}
+			}
+
+			@keyframes rotate-move {
+				55% {
+					transform: translate(-50%, -50%) rotate(0deg)
+				}
+
+				80% {
+					transform: translate(-50%, -50%) rotate(360deg)
+				}
+
+				100% {
+					transform: translate(-50%, -50%) rotate(360deg)
+				}
+			}
+
+			@keyframes index {
+
+				0%,
+				100% {
+					z-index: 3
+				}
+
+				33.3% {
+					z-index: 2
+				}
+
+				66.6% {
+					z-index: 1
+				}
+			}
+		</style>
+		<div class="container">
+			<div class="dot dot-1"></div>
+			<div class="dot dot-2"></div>
+			<div class="dot dot-3"></div>
+		</div>
+
+		<svg xmlns="http://www.w3.org/2000/svg" version="1.1">
+			<defs>
+				<filter id="goo">
+					<feGaussianBlur in="SourceGraphic" stdDeviation="10" result="blur" />
+					<feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 21 -7" />
+				</filter>
+			</defs>
+		</svg>
+		<!-- <div class="loading-wrap">
+			<div class="spinner">
+				<div></div>
+				<div></div>
+				<div></div>
+				<div></div>
+				<div></div>
+			</div>
+		</div> -->
+
+	</div>
+	<script type="module" src="/src/main.ts"></script>
+</body>
+
+</html>
