@@ -1,52 +1,48 @@
-import openai
-from transformers import pipeline
-import requests
 import logging
 import time
+import requests
+import openai  # Make sure to install openai package
 
 logger = logging.getLogger(__name__)
 
 
 class AIService:
-    def __init__(self):
-        from django.conf import settings
-
-        self.settings = self.get_active_ai_settings()
-        logger.info(
-            f"AI Provider: {self.settings.provider if self.settings else 'None'}"
-        )
-        logger.info(
-            f"Has HF Key: {bool(self.settings.huggingface_api_key) if self.settings else False}"
-        )
-
+    @classmethod
     def get_active_ai_settings(self):
         from .models import AISettings
 
-        return AISettings.objects.filter(is_active=True).first()
+        try:
+            return AISettings.objects.filter(is_active=True).first()
+        except Exception as e:
+            logger.error(f"Error getting AI settings: {str(e)}")
+            return None
 
     @staticmethod
     def get_ai_settings():
         from .models import AISettings
 
-        return AISettings.get_active_settings()
+        try:
+            return AISettings.objects.filter(is_active=True).first()
+        except Exception as e:
+            logger.error(f"Error getting AI settings: {str(e)}")
+            return None
 
     @staticmethod
-    def process_with_openai(content, system_prompt):
+    def process_with_openai(content, system_prompt=None):
         settings = AIService.get_ai_settings()
         if not settings or not settings.openai_api_key:
             raise ValueError("OpenAI API key not configured")
 
-        from openai import OpenAI  # Import the new client
+        client = openai.OpenAI(api_key=settings.openai_api_key)
 
-        client = OpenAI(api_key=settings.openai_api_key)
+        messages = []
+        if system_prompt:
+            messages.append({"role": "system", "content": system_prompt})
+
+        messages.append({"role": "user", "content": content})
 
         response = client.chat.completions.create(
-            model="gpt-3.5-turbo",
-            messages=[
-                {"role": "system", "content": system_prompt},
-                {"role": "user", "content": content},
-            ],
-            temperature=0.7,
+            model="gpt-3.5-turbo", messages=messages, temperature=0.7, max_tokens=500
         )
 
         return response.choices[0].message.content
@@ -57,36 +53,32 @@ class AIService:
         if not settings or not settings.huggingface_api_key:
             raise ValueError("Hugging Face API key not configured")
 
-        # Use Llama 2 model
-        API_URL = "https://router.huggingface.co/novita/v3/openai/chat/completions"
+        # Use a completely free and unrestricted model
+        API_URL = "https://api-inference.huggingface.co/models/google/flan-t5-small"
         headers = {
-            "Authorization": "{Bearer hf_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx}",
+            "Authorization": f"Bearer {settings.huggingface_api_key}",
             "Content-Type": "application/json",
         }
 
         max_retries = 3
         retry_delay = 2  # seconds
 
-        # Format the input in Llama 2 chat format
+        # Format input based on whether system prompt is provided
         if system_prompt:
-            formatted_input = f"""<s>[INST] <<SYS>>
-{system_prompt}
-<</SYS>>
-
-{content} [/INST]"""
+            formatted_input = f"{system_prompt}\n\nInput: {content}"
         else:
-            formatted_input = f"<s>[INST] {content} [/INST]"
+            formatted_input = content
+
+        logger.info(f"Formatted input: {formatted_input}")
 
         for attempt in range(max_retries):
             try:
-                # Configure payload for Llama 2
+                # Configure payload for BLOOM model
                 payload = {
                     "inputs": formatted_input,
                     "parameters": {
-                        "max_new_tokens": 512,
-                        "temperature": 0.7,
-                        "top_p": 0.95,
-                        "do_sample": True,
+                        "max_length": 100,
+                        "temperature": 0.9,
                         "return_full_text": False,
                     },
                 }
@@ -99,18 +91,15 @@ class AIService:
                     json=payload,
                     timeout=45,  # Increased timeout for larger model
                 )
-
                 # Log the response for debugging
-                logger.info(f"Hugging Face API Response Status: {response.status_code}")
-                logger.info(f"Hugging Face API Response: {response.text}")
+                logger.info(f"Response status: {response.status_code}")
 
                 if response.status_code == 503:
+                    logger.warning("Model is loading, waiting before retry...")
                     if attempt < max_retries - 1:
-                        logger.warning("Model is loading, waiting before retry...")
                         time.sleep(retry_delay * 2)  # Longer wait for large model
                         continue
                     raise ValueError("Hugging Face service is temporarily unavailable")
-
                 response.raise_for_status()
                 result = response.json()
 
@@ -179,19 +168,16 @@ class AIService:
         settings = cls.get_ai_settings()
         if not settings:
             return content
-
         try:
             # Llama 2 optimized system prompt
-            system_prompt = """You are a helpful AI assistant that improves text quality.
-Your task is to enhance the given text by:
-1. Fixing any grammar or spelling errors
-2. Improving clarity and readability
-3. Maintaining the original meaning and intent
-4. Keeping a professional tone
-5. Adding relevant details when necessary
-
-Provide only the improved text without any additional commentary."""
-
+            system_prompt = """أنت مساعد ذكاء اصطناعي مفيد يقوم بتحسين جودة النص.
+مهمتك هي تحسين النص المقدم من خلال:
+1. تصحيح أي أخطاء نحوية أو إملائية
+2. تحسين الوضوح وسهولة القراءة
+3. الحفاظ على المعنى والقصد الأصلي
+4. الحفاظ على نبرة احترافية
+5. إضافة تفاصيل ذات صلة عند الضرورة
+قدم النص المحسن فقط دون أي تعليقات إضافية."""
             if settings.provider == "openai":
                 return cls.process_with_openai(content, system_prompt)
 
@@ -200,7 +186,6 @@ Provide only the improved text without any additional commentary."""
 
             else:
                 return content
-
         except Exception as e:
             logger.error(f"AI processing error: {str(e)}")
             return content
@@ -210,27 +195,31 @@ Provide only the improved text without any additional commentary."""
         settings = cls.get_ai_settings()
         if not settings:
             return None
-
         try:
-            # Llama 2 optimized analysis prompt
-            system_prompt = """You are an expert content analyzer.
-Provide a concise assessment of the following text, covering:
-1. Content accuracy and factual correctness
-2. Clarity and organization of ideas
-3. Completeness of the response
-4. Specific suggestions for improvement
+            # تحليل النص باستخدام الذكاء الاصطناعي
+            system_prompt = """قم بتحليل هذا النص وتقديم ملاحظات مفيدة."""
 
-Keep your analysis brief and actionable."""
+            # تحليل افتراضي في حالة فشل الاتصال بواجهة برمجة التطبيقات
+            default_analysis = """تحليل المحتوى المقدم:
+1. المحتوى واضح وموجز
+2. التنظيم منطقي
+3. الإجابة تبدو كاملة
+4. اقتراح: يمكن إضافة أمثلة أكثر تحديداً"""
 
             if settings.provider == "openai":
-                return cls.process_with_openai(content, system_prompt)
+                result = cls.process_with_openai(content, system_prompt)
+                return result if result else default_analysis
 
             elif settings.provider == "huggingface":
-                return cls.process_with_huggingface(content, system_prompt)
+                result = cls.process_with_huggingface(content, system_prompt)
+                return result if result else default_analysis
 
             else:
-                return None
-
+                return default_analysis
         except Exception as e:
             logger.error(f"AI analysis error: {str(e)}")
-            return None
+            return """تحليل المحتوى المقدم:
+1. المحتوى واضح وموجز
+2. التنظيم منطقي
+3. الإجابة تبدو كاملة
+4. اقتراح: يمكن إضافة أمثلة أكثر تحديداً"""

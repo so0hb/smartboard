@@ -1,9 +1,9 @@
 export default {
 
   features: {
-   
+
   },
-  
+
   app: {
     start: 'Start',
     getStart: 'Get started',
@@ -23,10 +23,10 @@ export default {
     admins:'Admins',
     AICompanies:'AI Companies',
     AIModels:'AI Models',
-    Questions:'Questions',
+    Questions:'Discussion',
     username:'Username',
-    male: 'Male',   
-    female: 'Female', 
+    male: 'Male',
+    female: 'Female',
     other: 'Other' ,
     you:'You',
     nameApp: 'SmartBoard AI',
@@ -133,7 +133,7 @@ export default {
     Admins: 'Admins',
     AICompanies: 'AI Companies',
     AIModels: 'AI Models',
-    Questions: 'Questions',
+    Questions: 'Discussion',
     Dashboard: 'Dashboard',
     AI:'AI',
 
@@ -142,8 +142,8 @@ export default {
     deleteHistoryConfirm: 'Are you sure to clear this history?',
     clearHistoryConfirm: 'Are you sure to clear chat history?',
 
-    convAI: 'Conversations AI', 
-    convExperts: 'Conversations Experts', 
+    convAI: 'Conversations AI',
+    convExperts: 'Conversations Experts',
     translation:'Translation',
 
     alpha2: 'Alpha-2 Code',
@@ -158,9 +158,9 @@ export default {
     intermediateRegionCode: 'Intermediate Region Code',
     selectCountry: 'Select Country',
 
-    questions: 'Questions',
-    submitNewQuestion: 'Submit New Question',
-    listQuestions: 'List Questions',
+    questions: 'Discussions',
+    submitNewQuestion: 'Submit New Discussion',
+    listQuestions: 'List Discussions',
     title: 'Title',
     content: 'Content',
     category: 'Category',
@@ -168,10 +168,10 @@ export default {
     contentRequired: 'Content is required',
     submit: 'Submit',
     cancel: 'Cancel',
-    submitSuccess: 'Question submitted successfully',
-    submitFailed: 'Failed to submit question',
+    submitSuccess: 'Discussion submitted successfully',
+    submitFailed: 'Failed to submit discussion',
     confirmDelete: 'Confirm Delete',
-    deleteConfirmMessage: 'Are you sure you want to delete this question?',
+    deleteConfirmMessage: 'Are you sure you want to delete this discussion?',
 
     uploadSuccess: 'File uploaded successfully',
     uploadFile: 'Upload File',
@@ -202,8 +202,8 @@ export default {
     submitError: 'Failed to submit answer',
     loadError: 'Failed to load question',
     notFound: 'Not Found',
-    questionNotFound: 'The requested question could not be found',
-    backToList: 'Back to Questions',
+    questionNotFound: 'The requested discussion could not be found',
+    backToList: 'Back to Discussions',
     answer: 'Answer',
     active: 'Active',
     inactive: 'Inactive',
@@ -268,14 +268,14 @@ export default {
     imageChat:"Chat Image",
     research:"Researchs",
 
-    
+
     chatTypeImage: 'Create Images',
     chatTypeText: 'Text Chat',
     chatTypeResearch: 'Academic Research',
 
     chatAI:'Chats AI',
-  
-   
+
+
 
   },
   setting: {
@@ -329,14 +329,14 @@ export default {
       userTypeRequired: 'User Type is required',
       countryRequired: 'Country is required',
 
-      
+
     setting: 'Setting',
     general: 'General',
     advanced: 'Advanced',
     config: 'Config',
     avatarLink: 'Avatar Link',
     name: 'Name',
- 
+
     role: 'Role',
     temperature: 'Temperature',
     top_p: 'Top_p',
@@ -414,8 +414,8 @@ versionApp: "App Version",
     sendedCode:'We have send a code to your email',
     dontRecieveCode:"Didn't recieve code?",
     reSendCode:'Resend',
-  
-   
+
+
   },
 
 
@@ -458,125 +458,5 @@ versionApp: "App Version",
     changesToPrivacyPolicy: {
       title: 'Changes to our privacy policy',
       content:
-        'Any changes we may make to our privacy policy in the future will be posted on this page and, where appropriate, notified to you by e-mail. Please check back frequently to see any updates or changes to our privacy policy.',
-    },
-    contactInformation: {
-      title: 'Contact',
-      content:
-        '<p>Questions, comments, and requests regarding this privacy policy are welcomed and should be addressed to <a href="mailto:mfoud444@gmail.com" class="text-blue-500">mohammed foud mfoud444@gmail.com</a>.</p>',
-    },
-  },
-
-
-
-  termsOfUse: {
-    introduction: {
-      title: 'Introduction',
-      paragraphs: [
-        'The following terms are a legal agreement between BoardSmart ("BoardSmart" or "we" or "us") and you ("you") regarding the services provided to you through the website BoardSmart.web.app. Please read carefully the following terms and conditions before using our services. By clicking "I accept" when completing the registration process or using our services, YOU DECLARE YOUR ACCEPTANCE AND AGREE TO ALL TERMS AND CONDITIONS OF THIS AGREEMENT, and that you are authorized to act on behalf of the owner of this account. If you do not agree with them, you should not use our services.',
-        'We reserve the right, at our sole discretion, to change, add, or delete portions of these Terms of Use at any time without further notice.',
-      ],
-    },
-
-    services: {
-      title: 'Services',
-      paragraphs: [
-        'You must fill in the registration form on page "Register" to use the services. You must provide truthful and accurate information about yourself as requested in the registration form. As part of the registration process, you must specify your email address and a password for your account. You are responsible for maintaining the security of your account, passwords, and for all the use of the account that belongs to you. BoardSmart reserves the right to refuse to register a user or cancel an account if appropriate.',
-        'Part of the services we provide are free, while others are provided on a monthly (or annual) fee. The monthly fee paid by you to us will vary depending on the services that you ask us to provide to you. You can ask us and agree to upgrade or downgrade the services we provide, and the monthly fee will be amended accordingly.',
-        'BoardSmart uses every effort to ensure that access to our services is available to you. You agree, however, that there may be times, scheduled and unscheduled, where services will be unavailable. We will notify you about the planned operations and the unavailability of the service. Despite all efforts, BoardSmart is not responsible for any loss of service which occurs as a result of or non-availability of the service.',
-        'BoardSmart makes no guarantee that all the chat texts will be delivered without any problem to all visitors of your website because of the variety of browsers and their versions. Also in some, mainly old, browsers it is not possible to display the chat window or it may not be displayed correctly. In any case, we are not liable if the chat window is not displayed correctly or the installation of the chat windows on your website results in the incorrect display of the website. The user is responsible and should check that the website appears and functions without any problem after the installation of the service.',
-        'BoardSmart employs the OpenAI API to create AI chatbots that enhance your live chat experience. These chatbots utilize state-of-the-art natural language processing (NLP) technology to understand and respond to written language in a manner similar to human conversation. However, it is important to note that AI chatbots, while advanced, are not infallible and may occasionally provide incorrect or inaccurate information. We encourage users to review their chat history for any potential inaccuracies and take appropriate measures to address them, such as creating a new question-answer (QA) pair that provides a more accurate response.',
-        'Please be aware that BoardSmart is not responsible for any incorrect or inaccurate information provided by the AI chatbots, nor for any consequences that may arise from such information. Users are solely responsible for verifying the accuracy of any information received from the chatbots and for taking appropriate actions based on that information. We urge users to exercise caution and discretion when relying on information provided by the AI chatbots.',
-      ],
-    },
-    limitationsAndRestrictions: {
-      title: 'LIMITATIONS AND RESTRICTIONS',
-      paragraphs: [
-        'You agree not to use the services for any use or purpose that:',
-        'Breach any applicable local, state or federal laws',
-        'Is defamatory, blasphemous, pornographic, incites hatred, crime, terrorism or any other offense',
-        'Is misleading, for example, you present yourself like you\'re someone else',
-        'For any use that violates the intellectual property rights of others',
-        'You are not permitted to use our AI chatbot for the following purposes:',
-        'Illegal activities or any actions that exploit or harm children',
-        'Generating hateful, harassing, or violent content that targets individuals or groups based on their identity, or that promotes violence',
-        'Creating malware or code designed to disrupt or damage computer systems',
-        'Activities that carry a high risk of physical harm, including weapons development or management of critical infrastructure',
-        'Generating content that promotes self-harm, eating disorders, or acts of violence',
-        'Activities that carry a high risk of economic harm, such as multi-level marketing, or making automated eligibility determinations for credit, or public assistance',
-        'Fraudulent or deceptive activities, including scams, fake reviews or disinformation',
-        'Producing adult content including content meant to arouse sexual excitement (excluding sex education and wellness)',
-        'Political campaigning or lobbying, including generating campaign materials or building products for political purposes',
-        'Violating people\'s privacy, including tracking individuals without consent or unlawfully collecting or disclosing personal information',
-        'Engaging in the unauthorized practice of law, providing tailored legal or financial advice without qualified review, or offering medical diagnoses or treatment instructions',
-        'Please note that our AI chatbot is not designed to provide legal, financial, or medical advice, and should not be used for these purposes. We urge users to exercise caution and ensure that their use of our AI chatbot complies with all applicable laws and regulations.',
-        'We have every right to revise the policies of using the service, including the maximum number of conversations that a user can have per month (free package) and maximum days the dialogs are saved. Also, the prices of the packages may change at any time. The prices listed on the relevant webpage of the website are always applicable, and customers who pay for our services will be notified in time for the price change by email.',
-        'By subscribing to a paid plan (by credit card or PayPal account): (i) you declare that you are authorized to use this account / card. (ii) you give authorization to BoardSmart to debit the account / card for all charges associated with your account on a monthly, half-year, or annual fee until you cancel your subscription.',
-        'The corresponding costs will be charged even if your account is active but not in use. If you want to stop being charged, you are responsible for canceling your subscription before the next defined payment. If you cancel your subscription, you will be on your paid plan up to the date you have paid for. After that, you will be degraded to the free plan.',
-        'Unauthorized use of services and / or reselling the services without the prior written consent of BoardSmart is expressly prohibited.',
-      ],
-    },
-    refundPolicy: {
-      title: 'REFUND POLICY',
-      paragraphs: [
-        'We encourage our users to try our service for free before they pay for a plan. However you can easily cancel your subscription at any time from the operator console. There are no cancellation fees, though no refunds are provided for prorated periods. If you cancel your subscription, your plan will be active up to the date you have paid for. After that you will degraded to the free plan.',
-      ],
-    },
-    thirdParties: {
-      title: 'THIRD PARTIES',
-      paragraphs: [
-        'If you use BoardSmart account of a Third Party or a third party uses the service through your account, you declare and guarantee that (i) you are authorized to act on behalf of the third party and that third party is bound by this agreement and (ii) you will not give or share customer information with third parties.',
-      ],
-    },
-    proprietaryRights: {
-      title: 'PROPRIETARY RIGHTS',
-      paragraphs: [
-        'This agreement is relating to the services provided by BoardSmart and you are not given any permission for any software. You may not in any way, directly or indirectly: reverse engineering, disassemble or attempt to discover the source code, algorithms, or data related to the services of BoardSmart. You should not remove or modify any information of the services, and to create derivative work based on BoardSmart. The services that you can access from your account should be used exclusively by your business and you have not the right to share or resell the services in any way in favor of third parties.',
-        'The BoardSmart, BoardSmart.com and associated logos, trademarks, product names and trade names associated with BoardSmart are owned by BoardSmart. You cannot use any of our labels, or product names without our express written consent.',
-     
-      ],
-    },
- 
-  },
-
-  tel:{
-    keywords:'keywords',
-    addKeyWords:'Add KeyWords',
-    keyword:'keyword',
-    editKeyWords:'Edit KeyWords',
-    groups:'Groups',
-    phoneNumber:'Phone Number',
-    next:'Next',
-    confirmCode:'Confirm Code',
-    code:'Code',
-    blockkeywords:'Block Key Words',
-    addBlockkeywords:'Add block keywords',
-    blockkeyword:'block keyword',
-    editKeyBlockkeywords:'Edit KeyWords',
-  },
-  settings: {
-    aiSettings: 'AI Settings',
-    createNew: 'Create New Setting',
-    editAISettings: 'Edit AI Settings',
-    createAISettings: 'Create AI Settings',
-    provider: 'AI Provider',
-    providerRequired: 'Please select an AI provider',
-    apiKeyRequired: 'API key is required',
-    createSuccess: 'AI settings created successfully',
-    updateSuccess: 'AI settings updated successfully',
-    deleteSuccess: 'AI settings deleted successfully',
-    lastUpdated: 'Last Updated',
-    noAISettings: 'No AI Settings Configured',
-    noAISettingsDesc: 'Configure your AI provider settings to enable AI features',
-    createFirst: 'Create First Setting',
-    apiConfigured: 'API Key Configured',
-    enterApiKey: 'Enter your API key',
-    apiKeyHelp: 'Please enter a valid API key for the selected provider',
-    errorFetchingKey: 'Error fetching API key',
-    leaveBlankToKeepCurrent: 'Leave masked to keep current API key, or enter a new one to update',
-    verificationFailed: 'Failed to verify API key',
-    invalidApiKey: 'Invalid API key. Please check and try again.',
-    testingApiKey: 'Testing API key...',
-    apiKeyVerified: 'API key verified successfully',
-  },
-}
+        'Any changes we may make to our privac
+(Content truncated due to size limit. Use line ranges to read in chunks)

@@ -94,22 +94,22 @@ async function handleUpdateValue(key: string, item: MenuOption) {
       case 'filesmanager':
       await router.push({ name: 'filesmanager' });
       handleFinish()
-      break 
+      break
       case 'themes':
       await router.push({ name: 'themes' });
       handleFinish()
-      break 
+      break
 
       case 'settings':
       await router.push({ name: 'settings' });
       handleFinish()
-      break 
+      break
 
       case 'country':
       await router.push({ name: 'country' });
       handleFinish()
-      break 
-      
+      break
+
       case 'submit-question':
         await router.push({ name: 'submit-question' });
         handleFinish()
@@ -172,16 +172,16 @@ const menuOptions = computed(() => {
   baseOptions.push(
     {
       type: 'group',
-      label: t('common.Questions'),
-      key: 'questions-management',
+      label: t('common.Discussion'),
+      key: 'discussions-management',
       children: [
         {
-          label: t('common.submitNewQuestion'),
+          label: t('common.submitNewDiscussion'),
           key: 'submit-question',
           icon: iconRender({ icon: 'mdi:plus-circle' }),
         },
         {
-          label: t('common.listQuestions'),
+          label: t('common.listDiscussions'),
           key: 'list-questions',
           icon: iconRender({ icon: 'mdi:format-list-bulleted' }),
         }
